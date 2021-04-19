@@ -1,14 +1,16 @@
 import {
   BrowserRouter as Router,
   Route,
+  Switch,
   //These imports are a result of installing npm React Router.
   // it allows for easy navigation between pages. 
 } from 'react-router-dom';
 
 import Homepage from './Pages/Homepage';
 import AboutPage from './Pages/AboutPage';
-import ArticlesList from './Pages/ArticlesList';
+import ArticlesListPage from './Pages/ArticlesListPage';
 import ArticlePage from './Pages/ArticlePage';
+import NotFoundPage from './Pages/NotFoundPage';
 import NavBar from './NavBar';
 import './App.css';
 
@@ -25,10 +27,13 @@ function App() {
     <div className="App">
       <NavBar />
       <div id="page-body">
-        <Route path="/" component={Homepage} exact />
-        <Route path="/about" component={AboutPage} />
-        <Route path="/articles-list" component={ArticlesList} />
-        <Route path="/article" component={ArticlePage} />
+         <Switch>
+          <Route path="/" component={Homepage} exact />
+          <Route path="/about" component={AboutPage} />
+          <Route path="/articles-list" component={ArticlesListPage} />
+          <Route path="/article/:name" component={ArticlePage} />
+          <Route component={NotFoundPage} />
+         </Switch>
         </div>
     </div>
     </Router>

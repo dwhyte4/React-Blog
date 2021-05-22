@@ -4,20 +4,25 @@ import bodyParser from 'body-parser';
 const articlesInfo = {
     'learn-react': {
         upvotes: 0,
+        comments: [],
     },
     'learn-node': {
         upvotes: 0,
+        comments: [],
     },
     'my-thoughts-on-resumes': {
         upvotes: 0,
+        comments: [],
     },
 
 }
 const app = express();
 //created backend app
 
+const bodyparser = require('body-parser')
 // Parsers for POST data
-app.use(bodyParser.json());
+app.use(bodyparser.urlencoded({extended:false}))
+app.use(bodyparser.json())
 
 //this line parse the json object we included with the our request and adds a body property to the request paramater of the matching route
 
@@ -32,6 +37,11 @@ app.post('/api/articles/:name/upvotes', (req,res) => {
     //upvote counter
     res.status(200).send(`${articleName} now has ${articlesInfo[articleName].upvotes} upvotes`) 
     //sends a status message about number of upvotes
+});
+
+app.post('/api/articles/:name/add-comment', (req,res) => {
+    const{username, text} = req.body;
+
 });
 
 app.listen(8000, () => console.log('Listening on port 8000'));

@@ -17,7 +17,7 @@ const ArticlePage = ({match}) => {
     return (
     <>
     <h1>{article.title}</h1>
-    {article.content.map((paragraph,key) => (
+    {article.articlecontent.map((paragraph,key) => (
         <p key={key}>{paragraph}</p>
     ))}
     <h3>Other Articles:</h3>
